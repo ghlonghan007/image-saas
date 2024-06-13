@@ -23,3 +23,4 @@ drizzle-kit push
 pnpm drizzle-kit studio
 
 next-auth
+https://authjs.dev/getting-started/session-management/login
