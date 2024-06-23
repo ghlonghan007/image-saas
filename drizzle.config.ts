@@ -3,11 +3,11 @@ export default defineConfig({
   schema: "./src/server/db/schema.ts",
   dialect: 'postgresql',
   dbCredentials: {
-    host: 'localhost',
+    host: 'pgm-2vchltj7nw3lhp6dyo.rwlb.cn-chengdu.rds.aliyuncs.com',
     port: 5432,
-    database: 'postgres',
-    user: 'postgres',
-    password: '1qaz2wsx',
+    database: 'mydb',
+    user: 'longhan',
+    password: '1qaz_2wsx',
     ssl: false
   },
   verbose: true,

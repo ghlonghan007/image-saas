@@ -1,5 +1,6 @@
 'use client'
 
+<<<<<<< HEAD
 import { SignIn } from '@/components/auth/sign-in'
 
 import { SignOut } from '@/components/auth/sign-out'
@@ -48,3 +49,11 @@ export default function Home() {
     
   )
 }
+=======
+export default function Page() {
+    return <p>Dashboard Page</p>;
+  }
+
+
+// ai chatbot
+>>>>>>> ce94ed60f3fe88dfa8d03b484c6bc37dffed376a
