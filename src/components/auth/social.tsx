@@ -1,7 +1,7 @@
 'use client'
 import { Button } from "@/components/ui/button"
 import {FaGithub} from "react-icons/fa"
-
+import {FaGitlab} from "react-icons/fa"
 export  const Social = ()=>{
   return (
     <div className="flex items-center w-full gap-x-4">
@@ -19,7 +19,7 @@ export  const Social = ()=>{
         className="w-full"
         variant={'outline'}
       >
-        <FaGithub className="h-5 w-5"></FaGithub>
+        <FaGitlab className="h-5 w-5"></FaGitlab>
         
       </Button>
     </div>

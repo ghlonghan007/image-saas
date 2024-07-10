@@ -14,6 +14,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.6.0
     version: 3.6.0(react-hook-form@7.52.0)
+  '@neondatabase/serverless':
+    specifier: ^0.9.4
+    version: 0.9.4
   '@radix-ui/react-avatar':
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@18.0.0)(react@18.0.0)
@@ -31,7 +34,7 @@ dependencies:
     version: 2.1.1
   drizzle-orm:
     specifier: ^0.31.2
-    version: 0.31.2(@types/pg@8.11.6)(@types/react@18.0.0)(pg@8.12.0)(postgres@3.4.4)(react@18.0.0)
+    version: 0.31.2(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@types/react@18.0.0)(pg@8.12.0)(postgres@3.4.4)(react@18.0.0)
   fs:
     specifier: 0.0.1-security
     version: 0.0.1-security
@@ -679,6 +682,12 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@neondatabase/serverless@0.9.4:
+    resolution: {integrity: sha512-D0AXgJh6xkf+XTlsO7iwE2Q1w8981E1cLCPAALMU2YKtkF/1SF6BiAzYARZFYo175ON+b1RNIy9TdSFHm5nteg==}
+    dependencies:
+      '@types/pg': 8.11.6
+    dev: false
 
   /@next/env@14.2.3:
     resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
@@ -1569,7 +1578,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.31.2(@types/pg@8.11.6)(@types/react@18.0.0)(pg@8.12.0)(postgres@3.4.4)(react@18.0.0):
+  /drizzle-orm@0.31.2(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@types/react@18.0.0)(pg@8.12.0)(postgres@3.4.4)(react@18.0.0):
     resolution: {integrity: sha512-QnenevbnnAzmbNzQwbhklvIYrDE8YER8K7kSrAWQSV1YvFCdSQPzj+jzqRdTSsV2cDqSpQ0NXGyL1G9I43LDLg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -1652,6 +1661,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
+      '@neondatabase/serverless': 0.9.4
       '@types/pg': 8.11.6
       '@types/react': 18.0.0
       pg: 8.12.0
