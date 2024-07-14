@@ -16,7 +16,6 @@ export const LoginButton = ({ children, model, asChild }:LoginButtonProps) => {
   const onclick = () => {
     console.log('clicked')
     if (model ==='modal') {
-      
       router.push('/auth/login')
     } else {
       signIn('credentials', { callbackUrl: '/' })

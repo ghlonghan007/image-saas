@@ -1,26 +1,22 @@
 'use client'
-import { Button } from "@/components/ui/button"
-import {FaGithub} from "react-icons/fa"
-import {FaGitlab} from "react-icons/fa"
-export  const Social = ()=>{
+import { Button } from '@/components/ui/button'
+import { FaGithub } from 'react-icons/fa'
+import { FaGitlab } from 'react-icons/fa'
+export const Social = () => {
   return (
     <div className="flex items-center w-full gap-x-4">
-      <Button 
-        size={"lg"}
+      <Button
+        size={'lg'}
         className="w-full"
         variant={'outline'}
-        onClick={()=>{}}
+        onClick={() => {}}
       >
-        <FaGithub className="h-5 w-5"></FaGithub>
-        
+        <div>
+          <FaGithub size={30} />
+        </div>
       </Button>
-      <Button 
-        size={"lg"}
-        className="w-full"
-        variant={'outline'}
-      >
-        <FaGitlab className="h-5 w-5"></FaGitlab>
-        
+      <Button size={'lg'} className="w-full" variant={'outline'}>
+        <FaGitlab size={30}></FaGitlab>
       </Button>
     </div>
   )

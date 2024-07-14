@@ -22,7 +22,7 @@ export default function Home() {
           Auth
         </h1>
       </div>
-      <LoginButton>
+      <LoginButton model='modal'>
         <Button variant="secondary" size={'lg'}> Sign in</Button>
       </LoginButton>
     </main>

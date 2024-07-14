@@ -1,4 +1,3 @@
-import { Label } from "@radix-ui/react-label"
 
 interface HeaderProps{
   label:string
