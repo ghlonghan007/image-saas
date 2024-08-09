@@ -1,8 +1,8 @@
-import { signOut } from "@/auth"
-import { Button } from "@/components/ui/button"
+'use client'
+import { Button } from '@/components/ui/button'
 
-
+import { signOut } from 'next-auth/react'
 
 export function SignOut() {
-  return <Button onClick={() => signOut()}>Sign Out</Button>
+  return <Button onClick={() => signOut()}>Signout</Button>
 }

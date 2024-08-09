@@ -22,7 +22,8 @@ export async function login(values: z.infer<typeof LoginSchema>) {
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
-        case 'CredentialsSignin':
+        // case 'CredentialsSignin':
+        case 'CallbackRouteError':
           return { error: '无效凭证' }
         default:
           return { error: '回调错误' }

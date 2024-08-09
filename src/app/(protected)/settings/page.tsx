@@ -1,4 +1,5 @@
 import { auth, signOut } from '@/auth'
+import { SignOut } from '@/components/auth/sign-out'
 import { Button } from '@/components/ui/button'
 import { DEFAULT_LOGIN_REDACT_PATH } from '@/routes'
 
@@ -11,11 +12,11 @@ const SettingsPage = async () => {
       <form
         action={async () => {
           'use server'
-          await signOut()
+           await signOut()
         }}
-      >
-        <button>logout</button>
-      </form>
+        
+      > <button type="submit"> signOut</button></form>
+     
     </div>
   )
 }
