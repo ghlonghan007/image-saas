@@ -8,9 +8,7 @@ import {
   verificationTokens,
 } from '@/server/db/schema'
 import { db } from '@/server/db/db'
-import Credentials from 'next-auth/providers/credentials'
-// Your own logic for dealing with plaintext password strings; be careful!
-import { saltAndHashPassword } from '@/utils/password'
+
 import authConfig from './auth.config'
 
 export const {

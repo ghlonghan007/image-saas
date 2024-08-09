@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { FormError } from '@/components/form-error'
 import { FormSuccess } from '@/components/form-success'
 import { register } from '@/lib/actions/register'
+import { login } from '@/lib/actions/login'
 import { useTransition, useState } from 'react'
 import { Button } from '../ui/button'
 
@@ -32,16 +33,30 @@ export function RegisterForm() {
       name: '',
     },
   })
-  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    setError('')
-    setSuccess('')
-    setTransition(() => {
-      register(values).then((data) => {
-        setError(data.error)
-        setSuccess(data.success)
-      })
+/**
+ * 提交表单的回调函数
+ * @param values 表单的值，类型由RegisterSchema推断
+ */
+const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+  // 重置错误信息
+  setError('')
+  // 重置成功信息
+  setSuccess('')
+  // 设置一个过渡效果，用于表单提交过程中的状态变化
+  setTransition(() => {
+    // 调用register函数，传入表单值，然后处理注册结果
+    register(values).then((data) => {
+      // 如果有错误信息，则更新错误状态
+      setError(data.error)
+      // 如果有成功信息，则更新成功状态
+      setSuccess(data.success)
+      if (data.success) {
+        // 如果成功，重置表单
+        login(values)
+      }
     })
-  }
+  })
+}
   return (
     <CardWrapper
       headerLabel="Register"

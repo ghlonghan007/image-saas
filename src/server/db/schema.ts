@@ -89,3 +89,4 @@ export const authenticators = pgTable(
     }),
   })
 )
+
