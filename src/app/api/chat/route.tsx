@@ -3,6 +3,7 @@ import { ollama } from 'ollama-ai-provider';
 import { convertToCoreMessages, streamText, tool } from 'ai';
 import { z } from 'zod';
 import { findRelevantContent } from '@/lib/ai/embedding';
+
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 

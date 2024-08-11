@@ -1,4 +1,4 @@
-export const DEFAULT_LOGIN_REDACT_PATH = '/settings'
+export const DEFAULT_LOGIN_REDACT_PATH = '/chat'
 
 
 export const publicRoutes = ['/',]

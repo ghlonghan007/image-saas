@@ -2,7 +2,7 @@ import { embed, embedMany } from 'ai';
 
 import { db } from '@/server/db/db';
 import { cosineDistance, desc, gt, sql } from 'drizzle-orm';
-import { embeddings } from '@/server/db/embeddings';
+import { embeddings } from '@/server/db/schema';
 import { ollama } from 'ollama-ai-provider';
 
 const embeddingModel = ollama.embedding('nomic-embed-text');
@@ -21,6 +21,7 @@ const generateChunks = (input: string): string[] => {
     const { embeddings } = await embedMany({
       model: embeddingModel,
       values: chunks,
+
     });
     return embeddings.map((e, i) => ({ content: chunks[i], embedding: e }));
   };
