@@ -30,14 +30,13 @@ export default function Home() {
       <form onSubmit={handleSubmit} className="max-w-2xl w-full px-6">
         <div className="relative flex items-center w-full">
           <Textarea
-            ref={inputRef}
             name="input"
             rows={1}
             maxRows={5}
             placeholder="Ask a question..."
             value={input}
             className="resize-none w-full min-h-12 rounded-lg bg-gray-100 border border-gray-300 pl-4 pr-10 pt-3 pb-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={e => setInput(e.target.value)}
+
           />
           <Button
             type="submit"

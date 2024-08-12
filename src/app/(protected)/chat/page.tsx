@@ -25,6 +25,7 @@ export default function Chat() {
               </p>
             </div>
           </div>
+
         ))}
       </div>
 

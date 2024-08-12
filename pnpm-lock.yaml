@@ -77,6 +77,9 @@ importers:
       react-icons:
         specifier: ^5.2.1
         version: 5.2.1(react@18.0.0)
+      react-random-avatars:
+        specifier: ^1.3.1
+        version: 1.3.1(react@18.0.0)
       react-textarea-autosize:
         specifier: ^8.5.3
         version: 8.5.3(@types/react@18.0.0)(react@18.0.0)
@@ -2424,6 +2427,11 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-random-avatars@1.3.1:
+    resolution: {integrity: sha512-HyMGoWniK2D5CRthoA1he4c6LVFIX/yBjp4qarEXN/DsgJ+1R6M5gJwYhTBoATO+3itrGCAGnKZNqimG1sDjAA==}
+    peerDependencies:
+      react: ^18.2.0
 
   react-textarea-autosize@8.5.3:
     resolution: {integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==}
@@ -5057,6 +5065,10 @@ snapshots:
       react: 18.0.0
 
   react-is@16.13.1: {}
+
+  react-random-avatars@1.3.1(react@18.0.0):
+    dependencies:
+      react: 18.0.0
 
   react-textarea-autosize@8.5.3(@types/react@18.0.0)(react@18.0.0):
     dependencies:

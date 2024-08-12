@@ -22,6 +22,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
   if (existsEmail) {
     return { error: '邮箱已被人注册了!' }
   }
+  
   await db
     .insert(users)
     .values({ email: email, password: hashedPassword, name: name })
