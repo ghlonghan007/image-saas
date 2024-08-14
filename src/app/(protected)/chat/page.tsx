@@ -1,15 +1,15 @@
 'use client';
 
-import { useChat } from 'ai/react';
+import { Message, useChat } from 'ai/react';
 import ToolCallCard from '@/components/ToolExecutionCard';
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     maxToolRoundtrips: 2,
   });
-  const isLoading = (message) => {
+  const isLoading = (message: Message) => {
     // Example logic, modify according to your actual loading state handling
-    return message.toolInvocations?.some(invocation => !invocation.result);
-  };
+    return message.toolInvocations?.some((invocation) => !invocation)
+  }
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       <div className="space-y-4">

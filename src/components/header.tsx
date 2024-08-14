@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-'use client'
-=======
 'use server'
->>>>>>> 57ad6b1 (用户问答自己的数据库)
 import React from 'react'
 import { IconLogo } from '@/components/ui/icon'
 import { cn } from '@/lib/utils'
 import { LoginButton } from '@/components/auth/sign-in'
 import { Button } from '@/components/ui/button'
-<<<<<<< HEAD
-import { RandomAvatar } from "react-random-avatars";
-import { auth } from '@/auth'
-export const Header:React.FC = async() => {
-  // const session = await auth()
-=======
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -31,7 +21,6 @@ import { RandomUserAvatar } from '@/components/RandomUserAvatar'
 export const Header = async () => {
   const session = await auth()
   console.log(session)
->>>>>>> 57ad6b1 (用户问答自己的数据库)
   return (
     <header className="fixed w-full p-1 md:p-2 flex justify-between items-center z-10 backdrop-blur md:backdrop-blur-none bg-background/80 md:bg-transparent">
       <div>
@@ -42,12 +31,6 @@ export const Header = async () => {
       </div>
 
       <div className="flex gap-0.5">
-<<<<<<< HEAD
-      <LoginButton model='modal'>
-        <Button variant="secondary" size={'lg'}> 登入 </Button>
-      </LoginButton>
-            <RandomAvatar name={ 'defult'} size={40} />
-=======
         {session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -86,7 +69,6 @@ export const Header = async () => {
             </Button>
           </LoginButton>
         )}
->>>>>>> 57ad6b1 (用户问答自己的数据库)
       </div>
     </header>
   )
