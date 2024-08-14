@@ -3,6 +3,15 @@ import { Button } from '@/components/ui/button'
 
 import { signOut } from 'next-auth/react'
 
-export function SignOut() {
-  return <Button onClick={() => signOut()}>Signout</Button>
+interface SignOutProps {
+  text: string
+  className?: string
+}
+
+export function SignOut({ text, className }: SignOutProps) {
+  return (
+    <button onClick={() => signOut()} className={className} >
+      {text}
+    </button>
+  )
 }

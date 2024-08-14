@@ -1,11 +1,15 @@
 'use client';
 
 import { useChat } from 'ai/react';
-
+import ToolCallCard from '@/components/ToolExecutionCard';
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     maxToolRoundtrips: 2,
   });
+  const isLoading = (message) => {
+    // Example logic, modify according to your actual loading state handling
+    return message.toolInvocations?.some(invocation => !invocation.result);
+  };
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       <div className="space-y-4">
@@ -13,13 +17,19 @@ export default function Chat() {
           <div key={m.id} className="whitespace-pre-wrap">
             <div>
               <div className="font-bold">{m.role}</div>
+
               <p>
                 {m.content.length > 0 ? (
                   m.content
                 ) : (
-                  <span className="italic font-light">
-                    {'calling tool: ' + m?.toolInvocations?.[0].toolName}
+                  <span className="flex items-center italic font-light">
+                    {/* {'calling tool: ' + m?.toolInvocations?.[0]?.toolName} */}
+                    <ToolCallCard
+                      isLoading={isLoading(m)}
+                      toolName={m?.toolInvocations?.[0]?.toolName}
+                    />
                   </span>
+                  
                 )}
                 
               </p>

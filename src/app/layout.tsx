@@ -24,8 +24,11 @@ export default function RootLayout({
 
         <body className={inter.className}>
         <SessionProvider>
+        
           <Header/>
           {children}
+
+          
           </SessionProvider>
           </body>
 

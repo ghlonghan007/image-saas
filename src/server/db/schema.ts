@@ -13,8 +13,6 @@ import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 
-import { db } from '@/server/db/db'
-
 
 
 export const users = pgTable('user', {
@@ -106,8 +104,11 @@ export const embeddings = pgTable(
       () => resources.id,
       { onDelete: 'cascade' },
     ),
+    userId: varchar('userId', { length: 191 })
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
     content: text('content').notNull(),
-    embedding: vector('embedding', { dimensions: 768 }).notNull(),
+    embedding: vector('embedding', { dimensions: 1536 }).notNull(),
   },
   table => ({
     embeddingIndex: index('embeddingIndex').using(
@@ -126,7 +127,9 @@ export const resources = pgTable("resources", {
     .primaryKey()
     .$defaultFn(() => nanoid()),
   content: text("content").notNull(),
-
+  userId: text('userId')
+  .notNull()
+  .references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp("created_at")
     .notNull()
     .default(sql`now()`),
@@ -140,6 +143,7 @@ export const insertResourceSchema = createSelectSchema(resources)
   .extend({})
   .omit({
     id: true,
+    userId: true,
     createdAt: true,
     updatedAt: true,
   });
