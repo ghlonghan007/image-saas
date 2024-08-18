@@ -5,12 +5,13 @@ import bcrypt from 'bcryptjs'
 import type { NextAuthConfig } from 'next-auth'
 import { LoginSchema } from '@/schemas'
 import { getUserByEmail } from '@/data/user'
-
+import Github from 'next-auth/providers/github'
 export default {
   providers: [
-    GitHubProvider({
+    Github({
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
+      authorization: { params: { scope: 'read:user' } },
     }),
     GitLabProvider({
       clientId: process.env.AUTH_GITLAB_ID,

@@ -1,3 +1,4 @@
+import { Social } from '@/components/auth/social';
 'use server'
 
 import { LoginSchema } from '@/schemas'
@@ -36,4 +37,25 @@ export async function login(values: z.infer<typeof LoginSchema>) {
 
 export async function logout() {
   await signOut()
+}
+
+export async function  socialLogin(provider: string) {
+
+  try {
+    await signIn(provider, {
+      redirectTo: DEFAULT_LOGIN_REDACT_PATH,
+    })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        // case 'CredentialsSignin':
+        case 'CallbackRouteError':
+          return { error: '无效凭证' }
+        default:
+          return { error: '回调错误' }
+      }
+    }
+    throw error
+  }
+  return { success: '登入成功' }
 }
