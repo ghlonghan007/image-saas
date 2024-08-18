@@ -9,12 +9,12 @@ import {
 import { db } from '@/server/db/db';
 import { generateEmbeddings } from '@/lib/ai/embedding';
 import { embeddings as embeddingsTable } from '@/server/db/schema';
-import { getUserByEmail } from '@/data/user';
+import {  getUserByid } from '@/data/user';
 import { auth } from '@/auth';
 
 export const createResource = async (input: NewResourceParams) => {
   const session = await auth()
-  const user = await getUserByEmail(session?.user?.email||'')
+  const user = await getUserByid(session?.user?.id||'')
 
   if (!user){
     return 'User not found'

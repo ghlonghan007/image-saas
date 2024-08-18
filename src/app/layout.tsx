@@ -23,8 +23,8 @@ export default function RootLayout({
 
 
         <body className={inter.className}>
-        <SessionProvider>
-        
+        <SessionProvider >
+        {/* @ts-expect-error Async Server Component */}
           <Header/>
           {children}
 

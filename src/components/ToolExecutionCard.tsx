@@ -38,9 +38,12 @@ const CheckMark = () => (
     ></path>
   </svg>
 )
-
+interface ToolCallCardProps {
+  isLoading: boolean;
+  toolName: string|undefined; // 明确指定了类型
+}
 // Define the icon component that toggles between spinner and check mark
-const ToolCallCard = ({ isLoading, toolName }) => {
+const ToolCallCard : React.FC<ToolCallCardProps>= ({ isLoading, toolName }) => {
   let message = ''
 
   if (isLoading) {

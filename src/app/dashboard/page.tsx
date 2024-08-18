@@ -39,7 +39,6 @@ export default function Home() {
         </div>
       )}
       <div className="mt-2">
-        <SignOut></SignOut>
       </div>
     </div>
   )

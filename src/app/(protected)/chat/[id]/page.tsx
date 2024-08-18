@@ -12,6 +12,7 @@ export default function Chat() {
   })
 
   const isLoading = (message: Message) => {
+    if (!message.toolInvocations) return false
     // Example logic, modify according to your actual loading state handling
     return message.toolInvocations?.some((invocation) => !invocation)
   }

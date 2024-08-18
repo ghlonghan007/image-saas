@@ -8,6 +8,7 @@ export default function Chat() {
     maxToolRoundtrips: 2,
   });
   const isLoading = (message: Message) => {
+    if (!message.toolInvocations) return false
     // Example logic, modify according to your actual loading state handling
     return message.toolInvocations?.some((invocation) => !invocation)
   }

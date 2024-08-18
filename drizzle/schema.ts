@@ -1,5 +1,6 @@
 import { pgTable, foreignKey, varchar, text, timestamp, index, vector, primaryKey, unique, integer, boolean } from "drizzle-orm/pg-core"
   import { sql } from "drizzle-orm"
+import { UserRole } from "@/server/db/schema";
 
 
 
