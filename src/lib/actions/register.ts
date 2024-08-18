@@ -16,7 +16,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
   }
   const { email, password, name } = validatedFields.data
   const hashedPassword = await bcrypt.hash(password, 10)
-  console.log(hashedPassword)
+
   const existsEmail = await getUserByEmail(email)
 
   if (existsEmail) {

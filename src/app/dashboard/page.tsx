@@ -11,7 +11,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function Home() {
   const { data: session, status } = useSession()
-  console.log(session)
   if (!session) {
     return <div>{/* <SignIn></SignIn> */}</div>
   }

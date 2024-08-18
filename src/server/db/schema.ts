@@ -4,8 +4,8 @@ import {
   pgTable,
   text,
   primaryKey,
-  integer,index, varchar, vector
-
+  integer, index, varchar, vector,
+  pgEnum
 } from 'drizzle-orm/pg-core'
 import type { AdapterAccountType } from 'next-auth/adapters'
 import { sql } from "drizzle-orm";
@@ -14,6 +14,7 @@ import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 
+export const UserRole = pgEnum('role', ['admin','user']);
 
 
 export const users = pgTable('user', {
@@ -25,7 +26,7 @@ export const users = pgTable('user', {
   emailVerified: timestamp('emailVerified', { mode: 'date' }),
   image: text('image'),
   password: text('password'),
-  role: text("role").$type<"admin" | "user">().default('user'),
+  role: UserRole('role').default('user').notNull(),
 })
 
 export const accounts = pgTable(
@@ -107,8 +108,8 @@ export const embeddings = pgTable(
       { onDelete: 'cascade' },
     ),
     userId: varchar('userId', { length: 191 })
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
     content: text('content').notNull(),
     embedding: vector('embedding', { dimensions: 1536 }).notNull(),
   },
@@ -130,8 +131,8 @@ export const resources = pgTable("resources", {
     .$defaultFn(() => nanoid()),
   content: text("content").notNull(),
   userId: text('userId')
-  .notNull()
-  .references(() => users.id, { onDelete: 'cascade' }),
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp("created_at")
     .notNull()
     .default(sql`now()`),

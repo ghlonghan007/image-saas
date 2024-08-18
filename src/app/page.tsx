@@ -22,7 +22,7 @@ export default function Home() {
     const formData = new FormData(e.currentTarget)
 
     const id = generateId()
-    console.log(id)
+
     router.push(`/chat/${id}`)
   }
 

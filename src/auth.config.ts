@@ -12,6 +12,7 @@ export default {
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
       authorization: { params: { scope: 'read:user' } },
+      
     }),
     GitLabProvider({
       clientId: process.env.AUTH_GITLAB_ID,
