@@ -2,6 +2,7 @@
 
 import { Message, useChat } from 'ai/react';
 import ToolCallCard from '@/components/ToolExecutionCard';
+
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     maxToolRoundtrips: 2,

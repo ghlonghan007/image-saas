@@ -5,6 +5,7 @@ import {
   text,
   primaryKey,
   integer,index, varchar, vector
+
 } from 'drizzle-orm/pg-core'
 import type { AdapterAccountType } from 'next-auth/adapters'
 import { sql } from "drizzle-orm";
@@ -24,6 +25,7 @@ export const users = pgTable('user', {
   emailVerified: timestamp('emailVerified', { mode: 'date' }),
   image: text('image'),
   password: text('password'),
+  role: text("role").$type<"admin" | "user">().default('user'),
 })
 
 export const accounts = pgTable(

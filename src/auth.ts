@@ -9,7 +9,7 @@ import {
 } from '@/server/db/schema'
 import { db } from '@/server/db/db'
 
-import authConfig from './auth.config'
+import authConfig from '@/auth.config'
 
 export const {
   handlers: { GET, POST },
@@ -25,4 +25,15 @@ export const {
   }),
   session: { strategy: 'jwt' },
   ...authConfig,
+  callbacks: {
+    async jwt({ token }) {
+      token.customField = 'custom value'
+      return token
+    },
+    async session({ session, token}) {
+      if (token.sub&&session.user) session.user.id = token.sub
+      if (token.role&&session.user.role) session.user.role = token.sub
+      
+      return session
+    },}
 })
