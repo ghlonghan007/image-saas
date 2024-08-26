@@ -3,28 +3,49 @@ import { ollama } from 'ollama-ai-provider'
 import { convertToCoreMessages, streamText, tool } from 'ai'
 import { z } from 'zod'
 import { findRelevantContent } from '@/lib/ai/embedding'
-
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30
 import { createOpenAI } from '@ai-sdk/openai'
 import { auth } from '@/auth'
+// 允许流式响应最多30秒
+export const maxDuration = 30
+
 
 const openai = createOpenAI({
-  // custom settings, e.g.
+  // 自定义设置，例如
   baseURL: 'https://api.pro365.top/v1',
   apiKey: process.env.OPENAI_API_KEY,
-  compatibility: 'strict', // strict mode, enable when using the OpenAI API
+  compatibility: 'strict', // 严格模式，使用OpenAI API时启用
 })
 
+
+import { generateText } from 'ai';
+
+
+// 检查大模型连接状态的函数
+async function checkModelConnection() {
+  try {
+    const text = await  generateText({
+      model: openai('gpt-4-turbo'),
+      prompt: 'ping',
+    });
+    console.log('大模型连接成功:pong')
+    return true
+  } catch (error) {
+    console.error('大模型连接失败:', error)
+    return false
+  }
+}
 export async function POST(req: Request) {
   const { messages } = await req.json()
+  
+  // 检查大模型连接
+  await checkModelConnection()
 
+  
   const result = await streamText({
     // model: ollama('llama3.1'),
     model: openai('gpt-3.5-turbo'),
     system: `You are a helpful assistant. Check your knowledge base before answering any questions.
-    Only respond to questions using information from tool calls.
-    if no relevant information is found in the tool calls, respond, "Sorry, I don't know."`,
+    Only respond to questions using information from tool calls."`,
     messages: convertToCoreMessages(messages),
     tools: {
       addResource: tool({
@@ -49,3 +70,4 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse()
 }
+

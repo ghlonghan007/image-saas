@@ -12,6 +12,7 @@ import { db } from '@/server/db/db'
 import authConfig from '@/auth.config'
 import { getuid } from 'process'
 import { getUserByid } from './data/user'
+import { eq } from 'drizzle-orm'
 
 export const {
   handlers: { GET, POST },
@@ -28,23 +29,29 @@ export const {
   }),
   session: { strategy: 'jwt' },
   ...authConfig,
-  // callbacks: {
-  //   async jwt({ token }) {
- 
-
-  //     if (!token.sub) return token
-  //     const existingUser = await getUserByid(token.sub)
-  //     if (!existingUser) return token
-  //     token.role = existingUser.role
+  pages: {
+    signIn: '/auth/login',
+    error: '/auth/error',
+  },
+  events: {
+    linkAccount: async ({ user }) => {
+      if (!user.id) return
+      await db.update(users).set({ emailVerified: new Date() }).where(eq(users.id, user.id))
+    },
+  },
+  callbacks: {
+    async jwt({ token }) {
+      if (!token.sub) return token
+      const existingUser = await getUserByid(token.sub)
+      if (!existingUser) return token
+      token.role = existingUser.role
       
-  //     return token
-  //   },
-  //   async session({ session, token}) {
+      return token
+    },
+    async session({ session, token}) {
       
-  //     if (token.sub&&session.user) session.user.id = token.sub
-  //     if (token.role&&session.user) session.user.role = token.role 
-  //     console.log('session', session);
-  //     console.log('jwt', token);
-  //     return session
-  //   },}
+      if (token.sub&&session.user) session.user.id = token.sub
+      if (token.role&&session.user) session.user.role = token.role 
+      return session
+    },}
 })

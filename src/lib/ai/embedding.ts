@@ -6,7 +6,7 @@ import { embeddings } from '@/server/db/schema'
 import { ollama } from 'ollama-ai-provider'
 import { createOpenAI } from '@ai-sdk/openai'
 import { auth } from '@/auth'
-import { getUserByEmail } from '@/data/user'
+import { getUserByEmail, getUserByid } from '@/data/user'
 
 // const embeddingModel = ollama.embedding('nomic-embed-text');
 const openai = createOpenAI({
@@ -16,6 +16,7 @@ const openai = createOpenAI({
   compatibility: 'strict', // strict mode, enable when using the OpenAI API
 })
 const embeddingModel = openai.embedding('text-embedding-3-small')
+
 const generateChunks = (input: string): string[] => {
   return input
     .trim()
@@ -45,7 +46,7 @@ export const generateEmbedding = async (value: string): Promise<number[]> => {
 
 export const findRelevantContent = async (userQuery: string) => {
   const session = await auth()
-  const user = await getUserByEmail(session?.user?.email||'')
+  const user = await getUserByid(session?.user.id||'')
   console.log('user', user?.id);
   if (!user){
     return 'User not found'

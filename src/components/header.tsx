@@ -20,7 +20,6 @@ import { RandomUserAvatar } from '@/components/RandomUserAvatar'
 
 export const Header = async () => {
   const session = await auth()
-  console.log(session)
   return (
     <header className="fixed w-full p-1 md:p-2 flex justify-between items-center z-10 backdrop-blur md:backdrop-blur-none bg-background/80 md:bg-transparent">
       <div>
@@ -33,7 +32,7 @@ export const Header = async () => {
       <div className="flex gap-0.5">
         {session?.user ? (
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger className="focus:outline-none">
               <Avatar>
                 {session.user.image ? (
                   <AvatarImage
@@ -51,13 +50,16 @@ export const Header = async () => {
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>
-                {session.user.name ?? 'User'}
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuLabel className="font-normal">
+                <div className="flex flex-col space-y-1">
+                  <p className="text-sm font-medium leading-none">{session.user.name ?? 'User'}</p>
+                  <p className="text-xs leading-none text-muted-foreground">{session.user.email}</p>
+                </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <SignOut className="" text="登出" />
+              <DropdownMenuItem className="cursor-pointer">
+                <SignOut className="w-full text-left" text="登出" />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

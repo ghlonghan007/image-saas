@@ -15,13 +15,13 @@ import { auth } from '@/auth';
 export const createResource = async (input: NewResourceParams) => {
   const session = await auth()
   const user = await getUserByid(session?.user?.id||'')
-
   if (!user){
     return 'User not found'
   }
 
   try {
     const { content } = insertResourceSchema.parse(input);
+    console.log('[content]', content);
     const [resource] = await db
       .insert(resources)
       .values({content ,userId: user.id})
@@ -37,11 +37,10 @@ export const createResource = async (input: NewResourceParams) => {
       })),
     );
     
-
+    console.log('[信息添加完成]' );
     return 'Resource successfully created and embedded.';
   } catch (error) {
-    console.log('error', error);
-
+    console.log('[error]', error);
     return error instanceof Error && error.message.length > 0
       ? error.message
       : 'Error, please try again.';

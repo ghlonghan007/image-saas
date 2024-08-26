@@ -3,7 +3,7 @@ import React from 'react'
 // Define a spinner component for loading state
 const Spinner = () => (
   <svg
-    className="w-6 h-6 animate-spin text-blue-500"
+    className="w-6 h-6 animate-spin text-gray-900"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -38,23 +38,43 @@ const CheckMark = () => (
     ></path>
   </svg>
 )
+
+// Define an X mark component for the failed state
+const XMark = () => (
+  <svg
+    className="w-6 h-6 text-red-500"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="currentColor"
+      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+    />
+  </svg>
+)
+
 interface ToolCallCardProps {
   isLoading: boolean;
-  toolName: string|undefined; // 明确指定了类型
+  toolName: string | undefined;
+  isFailed: boolean;
 }
-// Define the icon component that toggles between spinner and check mark
-const ToolCallCard : React.FC<ToolCallCardProps>= ({ isLoading, toolName }) => {
+
+const ToolCallCard: React.FC<ToolCallCardProps> = ({ isLoading, toolName, isFailed }) => {
   let message = ''
+  let Icon = isLoading ? Spinner : (isFailed ? XMark : CheckMark)
 
   if (isLoading) {
     message = toolName === 'addResource' ? '添加向量中,请稍后' : '查询中'
+  } else if (isFailed) {
+    message = '调用失败'
   } else {
     message = toolName === 'addResource' ? '添加完成,请稍后' : '查询完成'
   }
 
   return (
     <span className="flex items-center ml-2">
-      {isLoading ? <Spinner /> : <CheckMark />}
+      <Icon />
       <span className="ml-2">{message}</span>
     </span>
   )

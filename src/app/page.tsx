@@ -1,25 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { generateId } from 'ai'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
+import { auth } from '@/auth'
 
 const font = {
   fontFamily: 'Poppins, sans-serif',
 }
 
-export default function Home() {
-  const inputRef = useRef<HTMLTextAreaElement>(null)
-  const [input, setInput] = useState('')
-  
+export default async function Home() {
+
   const router = useRouter()
-  
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
 
     const id = generateId()
 
