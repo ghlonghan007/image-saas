@@ -37,8 +37,13 @@ async function checkModelConnection() {
 export async function POST(req: Request) {
   const { messages } = await req.json()
   
+<<<<<<< HEAD
   // 检查大模型连接
   await checkModelConnection()
+=======
+
+
+>>>>>>> 6d08677 (ui修改)
 
   
   const result = await streamText({
@@ -69,5 +74,9 @@ export async function POST(req: Request) {
   })
 
   return result.toDataStreamResponse()
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 6d08677 (ui修改)

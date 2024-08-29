@@ -12,8 +12,12 @@ const font = {
   fontFamily: 'Poppins, sans-serif',
 }
 
+<<<<<<< HEAD
 export default async function Home() {
 
+=======
+export default function Home() {
+>>>>>>> 6d08677 (ui修改)
   const router = useRouter()
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
